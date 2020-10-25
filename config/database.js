@@ -1,7 +1,12 @@
 const parse = require('pg-connection-string').parse;
-const config = parse(process.env.DATABASE_URL)
+
+if(process.env.DATABASE_URL != undefined) {
+
+  const config = parse(process.env.DATABASE_URL)
+} 
 
 module.exports = ({ env }) => {
+  
   if(env('NODE_ENV') === 'production'){
     return {
       defaultConnection: 'default',
